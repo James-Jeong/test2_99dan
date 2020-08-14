@@ -133,7 +133,7 @@ static void test2_99_get_seq( test2_99_t *cal){
 			printf("\t| @ Enter sequence number (normal:0, reverse:1)\t: ");
 			rv_seq = test2_99_input_data( &cal->seq);
 			if( rv_seq < CAL_SUCCESS) continue;
-			if(( rv_seq != 0) && ( rv_seq != 1)){
+			if(( cal->seq != 0) && ( cal->seq != 1)){
 				printf("\t| ! Wrong sequence number, value is invalid!\n");
 				cal->seq = DEFAULT_INT;
 				continue;

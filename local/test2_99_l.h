@@ -23,8 +23,8 @@
 /**@brief test2_99_t struct */
 typedef struct test2_99_s test2_99_t;
 struct test2_99_s{
-	int val;				/**< value to calculate */
-	int seq; 				/**< sequence number to print */
+	int val;	/**< dan number to calculate */
+	int seq; 	/**< sequence number to print */
 };
 
 //////////////////////////////////////
