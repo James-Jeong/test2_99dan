@@ -2,180 +2,92 @@
 //////////////////////////////////////
 // static function for test2_99dan_t
 //////////////////////////////////////
-static void test2_99dan_get_value( test2_99dan_t *cal);
-static void test2_99dan_get_seq( test2_99dan_t *cal);
-static int test2_99dan_input_data( int *val);
-static void test2_99dan_calculate( int val1, int val2);
+static int test2_99dan_input_number( int *number, char *msg, int min, int max);
+static void test2_99dan_calculate_99dan( int dan_number1, int dan_number2);
 
 //////////////////////////////////////
 // local function for test2_99dan_t
 //////////////////////////////////////
+/**
+ * @fn void test2_99dan_display_99dan_result( int dan_number, int order_number)
+ * @brief 구구단 계산 및 결과를 출력하기 위한 함수
+ * @param dan_number 입력받은 단수, 특정 단수를 출력하기 위해 사용된다.
+ * @param order_number 출력 방향, 오름차순 또는 내림차순
+ * @return 설정하지 않음
+ */
+void test2_99dan_display_99dan_result( int dan_number, int order_number){
+	int i;
+	if( order_number == 0) for( i = 1; i <= MAX_NCAL; i++) test2_99dan_calculate_99dan( dan_number, i);
+	else if( order_number == 1) for( i = MAX_NCAL; i > 0; i--) test2_99dan_calculate_99dan( dan_number, i);
+}
 
 /**
- * @fn test2_99dan_t* test2_99dan_create()
- * @brief function to create test2_99dan_t struct object
- * @param val first value to calculate
- * @param seq second value to calculate
- * @return test2_99dan_t struct object
+ * @fn int test2_99dan_input_dan_number( int *dan_number, char *msg, int min, int max)
+ * @brief 구구단 숫자를 입력받는 함수
+ * @param dan_number 입력받을 단수
+ * @return 입력 성공 여부
  */
-test2_99dan_t* test2_99dan_create(){
+int test2_99dan_input_dan_number( int *dan_number, char *msg, int min, int max){
 	int rv = CAL_FAIL;
-
-	test2_99dan_t *cal = ( test2_99dan_t*)malloc( sizeof( test2_99dan_t));
-	if( cal == NULL){
-		printf("\t| ! Fail to allocate test2_99dan_t.\n");
-		return NULL;
-	}
-
-	rv = test2_99dan_init( cal); if( rv < CAL_SUCCESS){
-		printf("\t| ! Fail to initialize test2_99dan_t.\n");
-		return NULL;
-	}
-
-	return cal;
+	*dan_number = DEFAULT_INT;
+	rv = test2_99dan_input_number( dan_number, msg, min, max);
+	return rv;
 }
 
 /**
- * @fn int test2_99dan_init( test2_99dan_t *cal)
- * @brief function to initialize test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to initialize
- * @param val first value to calculate
- * @param seq second value to calculate
- * @return success
+ * @fn int test2_99dan_input_order_number( int *order_number, char *msg, int min, int max)
+ * @brief 출력 방향 숫자를 입력받는 함수
+ * @param order_number 입력받을 출력 방향
+ * @return 입력 성공 여부
  */
-int test2_99dan_init( test2_99dan_t *cal){
-	if( cal != NULL){
-		memset( cal, 0, sizeof( test2_99dan_t));
-		test2_99dan_get_value( cal);
-		test2_99dan_get_seq( cal);
-	}
-	else return CAL_FAIL;
-	return CAL_SUCCESS;
+int test2_99dan_input_order_number( int *order_number, char *msg, int min, int max){
+	int rv = CAL_FAIL;
+	*order_number = DEFAULT_INT;
+	rv = test2_99dan_input_number( order_number, msg, min, max);
+	return rv;
 }
 
 /**
- * @fn void test2_99dan_final( test2_99dan_t *cal)
- * @brief function to finalize test2_99dan_t struct object, destroy memory of member objects
- * @param cal test2_99dan_t struct object to finalize
- * @return void
+ * @fn static int test2_99dan_input_number( int *dan_number, char *msg, int min, int max)
+ * @brief 단수를 입력받기 위한 함수, scanf 사용
+ * @param number 입력받을 숫자, 주소값을 넘겨받음
+ * @param msg 출력문에 사용될 숫자 변수 이름
+ * @param min 최소 입력 숫자
+ * @param max 최대 입력 숫자
+ * @return 성공 여부
  */
-void test2_99dan_final( test2_99dan_t *cal){
-}
-
-/**
- * @fn void test2_99dan_destroy( test2_99dan_t **cal)
- * @brief function to detroy memory of test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to destroy
- * @return void
- */
-void test2_99dan_destroy( test2_99dan_t **cal){
-	test2_99dan_final( *cal);
-	free( *cal);
-	*cal = NULL;
-}
-
-/**
- * @fn void test_cal_clear( test2_99dan_t *cal)
- * @brief function to clear data of test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to clear
- * @return void
- */
-void test_cal_clear( test2_99dan_t *cal){
-	if( cal != NULL) memset( cal, 0, sizeof( test2_99dan_t));
-}
-
-/**
- * @fn void test2_99dan_display( test2_99dan_t *cal)
- * @brief function to calculate & print 99dan result of test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to print
- * @return void
- */
-void test2_99dan_display( test2_99dan_t *cal){
-	if( cal == NULL) return ;
-
-	int i;
-	int seq = cal->seq, val = cal->val;
-
-	printf("\n\t| @ Input value\t: %d\n", val);
-	if( seq == 1) for( i = 1; i <= MAX_NCAL; i++) test2_99dan_calculate( val, i);
-	else for( i = MAX_NCAL; i > 0; i--) test2_99dan_calculate( val, i);
-}
-
-/**
- * @fn static void test2_99dan_get_value( test2_99dan_t *cal)
- * @brief function to get 99dan values of test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to get values
- * @return void
- */
-static void test2_99dan_get_value( test2_99dan_t *cal){
-	/** return value to check error for val */
-	int rv_val = CAL_FAIL;
-	cal->val = DEFAULT_INT;
-
+static int test2_99dan_input_number( int *number, char *msg, int min, int max){
+	int rv = CAL_FAIL;
 	while( 1){
-		if(( cal->val == DEFAULT_INT) && ( rv_val == CAL_FAIL)){
-			printf("\t| @ Enter 99dan value\t: ");
-			rv_val = test2_99dan_input_data( &cal->val);
-			if( rv_val < CAL_SUCCESS) continue;
-		}
-
-		if(( cal->val != DEFAULT_INT) && ( rv_val == CAL_SUCCESS)) break;
-	}
-}
-
-/**
- * @fn static void test2_99dan_get_seq( test2_99dan_t *cal)
- * @brief function to get sequence value of test2_99dan_t struct object
- * @param cal test2_99dan_t struct object to get sequence value
- * @return void
- */
-static void test2_99dan_get_seq( test2_99dan_t *cal){
-	int i;
-	/** return value to check error for seq */
-	int rv_seq = CAL_FAIL;
-	cal->seq = DEFAULT_INT;
-
-	while( 1){
-		if(( cal->seq == DEFAULT_INT) && ( rv_seq == CAL_FAIL)){
-			printf("\t| @ Enter sequence number (normal:0, reverse:1)\t: ");
-			rv_seq = test2_99dan_input_data( &cal->seq);
-			if( rv_seq < CAL_SUCCESS) continue;
-			if(( cal->seq != 0) && ( cal->seq != 1)){
-				printf("\t| ! Wrong sequence number, value is invalid!\n");
-				cal->seq = DEFAULT_INT;
+		if(( *number == DEFAULT_INT) && ( rv == CAL_FAIL)){
+			printf("\t| @ Enter %s number\t: ", msg);
+			rv = scanf( "%d", number);
+			if( rv < CAL_SUCCESS){
+				printf("\t| ! Wrong %s, %s is not integer!\n", msg, msg);
+				*number = DEFAULT_INT;
+				while( getchar() != '\n');
+				continue;
+			}
+			else if(( *number < min) || ( *number > max)){
+				printf("\t| ! Wrong %s number, value is invalid!\n", msg);
+				*number = DEFAULT_INT;
+				rv = CAL_FAIL;
 				continue;
 			}
 		}
-
-		if(( cal->seq != DEFAULT_INT) && ( rv_seq == CAL_SUCCESS)) break;
-	}
-}
-
-/**
- * @fn static int test2_99dan_input_data( int *val)
- * @brief common function to input data
- * @param val value by scanf function
- * @return success
- */
-static int test2_99dan_input_data( int *val){
-	int rv = scanf( "%d", val);
-	if( rv == CAL_FAIL){
-		printf("\t| ! Wrong value, value is not integer!\n");
-		*val = DEFAULT_INT;
-		while( getchar() != '\n');
-		return rv;
+		if(( *number != DEFAULT_INT) && ( rv == CAL_SUCCESS)) break;
 	}
 	return rv;
 }
 
 /**
- * @fn static void test2_99dan_input_data( int val1, int val2)
- * @brief common function to calculate 99dan
- * @param val1 operand value 1
- * @param val1 operand value 2
- * @return void
+ * @fn static void test2_99dan_calculate_99dan( int value1, int value2)
+ * @brief 구구단 계산을 위한 함수
+ * @param dan_number1 operand 1
+ * @param dan_number1 operand 2
+ * @return 설정하지 않음
  */
-static void test2_99dan_calculate( int val1, int val2){
-	printf("\t| @ (%d) x (%d) = %d\n", val1, val2, ( val1 * val2));
+static void test2_99dan_calculate_99dan( int value1, int value2){
+	printf("\t| @ (%d) x (%d) = %d\n", value1, value2, ( value1 * value2));
 }
 

@@ -1,16 +1,28 @@
 #include "local/test2_99dan_l.h"
 
 /**
- * @fn int main( int argc, char **argv)
- * @brief test2_99dan_t 모듈 구동을 위한 main 프로그램
- * @return none
- * @param argc none
- * @param argv none
+ * @fn void main( int argc, char **argv)
+ * @brief test2_99dan_t 모듈 구동을 위한 main 프로그램, 구구단 계산 프로그램
+ * @return 설정하지 않음
+ * @param argc 설정하지 않음
+ * @param argv 설정하지 않음
  */
-int main( int argc, char **argv){
-	test2_99dan_t *cal = test2_99dan_create();
-	if( cal == NULL) return CAL_FAIL;
-	test2_99dan_display( cal);
-	test2_99dan_destroy( &cal);
+void main( int argc, char **argv){
+	int rv = 0;
+	int dan_number = 0, order_number = 0;
+
+	rv = test2_99dan_input_dan_number( &dan_number, "dan number(1~10)", 1, 10);
+	if( rv < CAL_SUCCESS){
+		printf("\t| ! Input dan number error\n");
+		return ;
+	}
+
+	rv = test2_99dan_input_order_number( &order_number, "order number(0:up/1:down)", 0, 1);
+	if( rv < CAL_SUCCESS){
+		printf("\t| ! Input order number error\n");
+		return ;
+	}
+
+	test2_99dan_display_99dan_result( dan_number, order_number);
 }
 
