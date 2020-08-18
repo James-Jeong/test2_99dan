@@ -101,6 +101,12 @@ void test2_99_display( test2_99_t *cal){
 	else if( seq == 1) for( i = MAX_NCAL; i > 0; i--) test2_99_calculate( val, i);
 }
 
+/**
+ * @fn static void test2_99_get_value( test2_99_t *cal)
+ * @brief function to get 99dan values of test2_99_t struct object
+ * @param cal test2_99_t struct object to get values
+ * @return void
+ */
 static void test2_99_get_value( test2_99_t *cal){
 	/** return value to check error for val */
 	int rv_val = CAL_FAIL;
@@ -117,6 +123,12 @@ static void test2_99_get_value( test2_99_t *cal){
 	}
 }
 
+/**
+ * @fn static void test2_99_get_seq( test2_99_t *cal)
+ * @brief function to get sequence value of test2_99_t struct object
+ * @param cal test2_99_t struct object to get sequence value
+ * @return void
+ */
 static void test2_99_get_seq( test2_99_t *cal){
 	int i;
 	/** return value to check error for seq */
@@ -139,6 +151,12 @@ static void test2_99_get_seq( test2_99_t *cal){
 	}
 }
 
+/**
+ * @fn static int test2_99_input_data( int *val)
+ * @brief common function to input data
+ * @param val value by scanf function
+ * @return success
+ */
 static int test2_99_input_data( int *val){
 	int rv = scanf( "%d", val);
 	if( rv == CAL_FAIL){
@@ -150,6 +168,13 @@ static int test2_99_input_data( int *val){
 	return rv;
 }
 
+/**
+ * @fn static void test2_99_input_data( int val1, int val2)
+ * @brief common function to calculate 99dan
+ * @param val1 operand value 1
+ * @param val1 operand value 2
+ * @return void
+ */
 static void test2_99_calculate( int val1, int val2){
 	printf("\t| @ (%d) x (%d) = %d\n", val1, val2, ( val1 * val2));
 }
