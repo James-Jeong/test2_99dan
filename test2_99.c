@@ -93,13 +93,12 @@ void test_cal_clear( test2_99_t *cal){
 void test2_99_display( test2_99_t *cal){
 	if( cal == NULL) return ;
 
-	printf("\n\t| @ Input value\t: %d\n", cal->val);
-
-	int seq = cal->seq;
 	int i;
+	int seq = cal->seq, val = cal->val;
 
-	if( seq == 0) for( i = 1; i <= MAX_NCAL; i++) test2_99_calculate( cal->val, i);
-	else if( seq == 1) for( i = MAX_NCAL; i > 0; i--) test2_99_calculate( cal->val, i);
+	printf("\n\t| @ Input value\t: %d\n", val);
+	if( seq == 0) for( i = 1; i <= MAX_NCAL; i++) test2_99_calculate( val, i);
+	else if( seq == 1) for( i = MAX_NCAL; i > 0; i--) test2_99_calculate( val, i);
 }
 
 static void test2_99_get_value( test2_99_t *cal){
