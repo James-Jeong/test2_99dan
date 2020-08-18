@@ -1,8 +1,8 @@
-#ifndef __TEST2_99_H__
-#define __TEST2_99_H__
+#ifndef __TEST2_99DAN_H__
+#define __TEST2_99DAN_H__
 
 //////////////////////////////////////
-// definition & macro for test2_99_t
+// definition & macro for test2_99dan_t
 //////////////////////////////////////
 
 #include <stdio.h>
@@ -20,23 +20,23 @@
 /** default value to calculate */
 #define MAX_NCAL 10
 
-/**@brief test2_99_t struct */
-typedef struct test2_99_s test2_99_t;
-struct test2_99_s{
+/**@brief test2_99dan_t struct */
+typedef struct test2_99dan_s test2_99dan_t;
+struct test2_99dan_s{
 	int val;	/**< dan number to calculate */
 	int seq; 	/**< sequence number to print */
 };
 
 //////////////////////////////////////
-// function for test2_99_t
+// function for test2_99dan_t
 //////////////////////////////////////
-test2_99_t* test2_99_create();
-int test2_99_init( test2_99_t *cal);
-void test2_99_final( test2_99_t *cal);
-void test2_99_destroy( test2_99_t **cal);
+test2_99dan_t* test2_99dan_create();
+int test2_99dan_init( test2_99dan_t *cal);
+void test2_99dan_final( test2_99dan_t *cal);
+void test2_99dan_destroy( test2_99dan_t **cal);
 
-void test2_99_display( test2_99_t *cal);
-void test_cal_clear( test2_99_t *cal);
+void test2_99dan_display( test2_99dan_t *cal);
+void test_cal_clear( test2_99dan_t *cal);
 
-#endif // __TEST2_99_H__
+#endif // #ifndef __TEST2_99DAN_H__
 
