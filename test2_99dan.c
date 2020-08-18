@@ -97,8 +97,8 @@ void test2_99dan_display( test2_99dan_t *cal){
 	int seq = cal->seq, val = cal->val;
 
 	printf("\n\t| @ Input value\t: %d\n", val);
-	if( seq == 0) for( i = 1; i <= MAX_NCAL; i++) test2_99dan_calculate( val, i);
-	else if( seq == 1) for( i = MAX_NCAL; i > 0; i--) test2_99dan_calculate( val, i);
+	if( seq == 1) for( i = 1; i <= MAX_NCAL; i++) test2_99dan_calculate( val, i);
+	else for( i = MAX_NCAL; i > 0; i--) test2_99dan_calculate( val, i);
 }
 
 /**
