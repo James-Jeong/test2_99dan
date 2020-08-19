@@ -17,6 +17,7 @@ static void test2_99dan_calculate_99dan( int dan_number1, int dan_number2);
  */
 void test2_99dan_display_99dan_result( int dan_number, int order_number){
 	int i;
+	
 	if( order_number == 0) for( i = 1; i <= MAX_NCAL; i++) test2_99dan_calculate_99dan( dan_number, i);
 	else if( order_number == 1) for( i = MAX_NCAL; i > 0; i--) test2_99dan_calculate_99dan( dan_number, i);
 }
@@ -51,7 +52,7 @@ int test2_99dan_input_order_number( int *order_number, char *msg, int min, int m
  * @fn static int test2_99dan_input_number( int *dan_number, char *msg, int min, int max)
  * @brief 단수를 입력받기 위한 함수, scanf 사용
  * @param number 입력받을 숫자, 주소값을 넘겨받음
- * @param msg 출력문에 사용될 숫자 변수 이름
+ * @param msg 출력문에 사용될 숫자 변수 이름 및 범위
  * @param min 최소 입력 숫자
  * @param max 최대 입력 숫자
  * @return 성공 여부
@@ -60,7 +61,7 @@ static int test2_99dan_input_number( int *number, char *msg, int min, int max){
 	int rv = CAL_FAIL;
 	while( 1){
 		if(( *number == DEFAULT_INT) && ( rv == CAL_FAIL)){
-			printf("\t| @ Enter %s number\t: ", msg);
+			printf("\t| @ Enter %s \t: ", msg);
 			rv = scanf( "%d", number);
 			if( rv < CAL_SUCCESS){
 				printf("\t| ! Wrong %s, %s is not integer!\n", msg, msg);
@@ -69,7 +70,7 @@ static int test2_99dan_input_number( int *number, char *msg, int min, int max){
 				continue;
 			}
 			else if(( *number < min) || ( *number > max)){
-				printf("\t| ! Wrong %s number, value is invalid!\n", msg);
+				printf("\t| ! Wrong %s, value is invalid!\n", msg);
 				*number = DEFAULT_INT;
 				rv = CAL_FAIL;
 				continue;
