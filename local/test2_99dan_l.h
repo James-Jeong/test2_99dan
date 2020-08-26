@@ -8,7 +8,7 @@
 #include <limits.h>
 
 //////////////////////////////////////
-// Definitions & Macros for test2_99dan_t
+// Definitions & Macros
 //////////////////////////////////////
 
 /** 성공 여부 */
@@ -21,7 +21,7 @@
 #define MAX_NCAL 10
 
 //////////////////////////////////////
-// Functions for test2_99dan_t
+// Functions
 //////////////////////////////////////
 
 void test2_99dan_input_dan_number( int *dan_number, char *msg, int min, int max);

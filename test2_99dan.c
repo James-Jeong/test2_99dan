@@ -1,14 +1,14 @@
 #include "local/test2_99dan_l.h"
 
 //////////////////////////////////////
-// Static functions for test2_99dan_t
+// Static functions
 //////////////////////////////////////
 
 static void test2_99dan_input_number( int *number, char *msg, int min, int max);
 static void test2_99dan_calculate_99dan( int dan_number1, int dan_number2);
 
 //////////////////////////////////////
-// Local functions for test2_99dan_t
+// Local functions
 //////////////////////////////////////
 
 /**
