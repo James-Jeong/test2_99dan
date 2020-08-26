@@ -10,8 +10,8 @@
 void main(){
 	int dan_number = DEFAULT_INT, order_number = DEFAULT_INT;
 
-	test2_99dan_input_dan_number( &dan_number, "단수", 1, 10);
-	test2_99dan_input_order_number( &order_number, "출력 순서", 0, 1);
-	test2_99dan_display_99dan_result( dan_number, order_number);
+	input_number( &dan_number, "단수", 1, 10);
+	input_number( &order_number, "출력 순서", 0, 1);
+	display_99dan_result( dan_number, order_number);
 }
 
